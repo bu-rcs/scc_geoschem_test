@@ -1,6 +1,5 @@
 #!/bin/bash -l
 
-
 # CHECK FOR VALID ARGUMENTS
 if [ -z "$1" ]
   then
