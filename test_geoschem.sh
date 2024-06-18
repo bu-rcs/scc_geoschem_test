@@ -1,15 +1,33 @@
 #!/bin/bash -l
 
+# Define the help method
+help() {
+  echo "Usage: $(basename $0) [-h] GIT_TAG OUTPUT_DIR"
+  echo ""
+  echo "example: $(basename $0) 14.3.1 ~/test_14.3.1"
+  exit 0
+}
+
+while getopts ":h" option; do
+   case $option in
+      h) # display Help
+         help
+         exit;;
+   esac
+done
+
 # CHECK FOR VALID ARGUMENTS
 if [ -z "$1" ]
   then
-    echo "ERROR: No git tag argument provided."
+    printf "ERROR: No git tag argument provided.\n\n"
+    help
     exit 1
 fi
 
 if [ -z "$2" ]
   then
-    printf "ERROR: No destination directory argument provided."
+    printf "ERROR: No destination directory argument provided.\n\n"
+    help
     exit 1
 fi
 
@@ -68,6 +86,7 @@ sed -i "s|baseOptions=.*|baseOptions=\"-DCMAKE_BUILD_TYPE=Debug -DRUNDIR='' -DIN
 
 ./parallelTestCompile.sh
 
+# Display results of compiling
 cat ${RUNS_DIR}/logs/results.compile.log
 
 
@@ -75,4 +94,5 @@ printf "\n\nSCC TEST - EXECUTE TESTS\n"
 printf "===================================================\n"
 ./parallelTestExecute.sh 
 
+# Display results of run
 cat ${RUNS_DIR}/logs/results.parallel.log
