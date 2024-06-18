@@ -52,7 +52,7 @@ printf "\n\nSCC TEST - CREATE RUN DIRECTORY\n"
 printf "===================================================\n"
 mkdir -p ${RUNS_DIR}
 
-cd ${DEST_CLONE}/test/parallel/GCClassic/ && ./parallelTestCreate.sh ${RUNS_DIR} env.sh ALL YES
+cd ${DEST_CLONE}/test/parallel/GCClassic/ && ./parallelTestCreate.sh ${RUNS_DIR} env.sh ALL NO
 
 if [ $? -ne 0 ]; then
     printf "Failed to create run directories. \nExiting\n"
@@ -75,4 +75,4 @@ printf "\n\nSCC TEST - EXECUTE TESTS\n"
 printf "===================================================\n"
 ./parallelTestExecute.sh 
 
-cat tail -l ${RUNS_DIR}/logs/results.parallel.log
+cat ${RUNS_DIR}/logs/results.parallel.log
