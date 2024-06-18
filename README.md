@@ -29,7 +29,7 @@ The following are the general steps of this script:
 1. Run the `test_geoschem.sh` bash script.
 
 ```console
-   bash test_geosche.sh 14.4.0 test_directory
+   bash test_geoschem.sh 14.4.0 test_directory
 ```
 
 ## Review Results
